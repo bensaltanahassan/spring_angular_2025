@@ -1,0 +1,112 @@
+form{
+    margin: 30px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+label{
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+textarea{
+    box-shadow: none;
+    outline-style: none;
+}
+
+
+.form-group textarea,
+.form-group input[type='number']{
+    border-color: transparent;
+    outline: none !important;
+    box-shadow: none !important;
+    color: black;
+    border-bottom-color: black;
+    border-radius: 0px;
+    border-width: 1px;
+    background-color: transparent;
+}
+
+.form-group textarea::placeholder,
+.form-group input[type='number']::placeholder{
+    color: gray;
+}
+
+.form-group textarea:focus,
+.form-group input[type='number']:focus{
+    border-bottom-color: rgb(60, 141, 165);
+}
+
+/* Chrome, Safari, Edge, Opera */
+.form-group input[type='number']::-webkit-outer-spin-button,
+.form-group input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.form-group input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.form-group{
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
+.form-group input[type='submit']:hover{
+    background-color: rgb(231, 132, 79);
+}
+
+.form-group input[type='submit']{
+    margin-top: .8rem;
+    border: none;
+    outline: none;
+    background-color: rgb(226, 103, 37);
+    color: white;
+    font-size: 1.1rem;
+    padding: .5rem 0;
+    width: 35%;
+    border-radius: .3rem;
+}
+
+.error{
+    visibility: hidden;
+    width: 100%;
+    font-size: .6em;
+    font-weight: 500;
+    color: #c9515d;
+}
+
+.error.set{
+    visibility: visible;
+}
+
+.error{
+    width: 100%;
+    font-size: 1.1em;
+    color: #dc3545;
+    background: #dc35451f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #dc3545;
+    margin-bottom: 20px;
+  }
+  
+  .errorS{
+    visibility: hidden;
+    color: #dc3545;
+  }
+  
+  .errorS.set{
+    visibility: visible;
+  }
+  
+  .error.set{
+    display: block;
+  }

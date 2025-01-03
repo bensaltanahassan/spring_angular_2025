@@ -1,0 +1,50 @@
+<p-toast></p-toast>
+<div id="add_container">
+  <form [formGroup]="statusForm" (ngSubmit)="onSubmit()" id="statusForm">
+    <div>
+      <select
+        title="Status"
+        class="form-select"
+        id="status-select"
+        formControlName="status"
+        [ngClass]="{ 'is-invalid': invalidStatus() }"
+      >
+        <option [ngValue]="null" disabled selected>Status</option>
+        <option *ngFor="let st of status">
+          {{ st }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <textarea
+        placeholder="Motif"
+        id="motif"
+        class="form-control"
+        name="motif"
+        rows="4"
+        cols="50"
+        formControlName="motif"
+        [ngClass]="{ 'is-invalid': invalidMotif() }"
+      ></textarea>
+    </div>
+    <div
+      class="form-group"
+      style="display: flex; justify-content: flex-end; margin-bottom: 10px"
+    >
+      <input
+        type="reset"
+        value="Réinitialiser"
+        id="annuler"
+        data-toggle="modal"
+        data-target="#changeStat"
+      />
+      <input
+        type="submit"
+        value="Modifier"
+        id="modifier"
+        data-toggle="modal"
+        data-target="#changeStat"
+      />
+    </div>
+  </form>
+</div>

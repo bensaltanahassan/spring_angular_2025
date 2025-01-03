@@ -1,0 +1,81 @@
+<div *ngIf="!transferService.sender_selected" style="margin: 0 auto">
+  <h3>Transfert par débit</h3>
+
+  <form
+    action=""
+    [formGroup]="search_phone_num"
+    (ngSubmit)="onSubmit()"
+    *ngIf="!show_user_infos"
+  >
+    <div class="formgroup-inline">
+      <div class="field">
+        <label htmlFor="firstname1" class="p-sr-only"
+          >Numero de telephone</label
+        >
+        <input
+          type="text"
+          formControlName="phone_num"
+          [ngClass]="{ 'is-invalid': invalidphone_num() }"
+          name="phone_num"
+          id="phone_num"
+          class="form-control"
+          autocomplete="off"
+          placeholder="Numéro de télephone"
+          pInputText
+        />
+        <p class="error" [ngClass]="{ set: invalidphone_num() }">
+          {{ errorphone_num }}
+        </p>
+      </div>
+      <button pButton type="submit" label="Chercher"></button>
+    </div>
+  </form>
+</div>
+
+<!-- <form
+    [formGroup]="search_phone_num"
+    (ngSubmit)="onSubmit()"
+    *ngIf="!show_user_infos"
+  >
+    <div class="row g-3">
+      <div class="col-8">
+        <div class="form-group" [ngClass]="{ 'has-error': invalidphone_num() }">
+          <input
+            type="text"
+            formControlName="phone_num"
+            [ngClass]="{ 'is-invalid': invalidphone_num() }"
+            name="phone_num"
+            id="phone_num"
+            class="form-control"
+            autocomplete="off"
+            placeholder="Numéro de télephone"
+          />
+          <p class="error" [ngClass]="{ set: invalidphone_num() }">
+            {{ errorphone_num }}
+          </p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div
+          class="form-group"
+          style="display: flex; justify-content: flex-end"
+        >
+          <input type="submit" value="Chercher" id="ajouter" />
+        </div>
+      </div>
+    </div>
+  </form> -->
+
+<div *ngIf="show_user_infos">
+  <app-kyc-table [user]="user"></app-kyc-table>
+
+  <div class="buttons_bottom">
+    <button (click)="set_show_user_infos(false)">Retour</button>
+    <button (click)="suivant()">Suivant</button>
+  </div>
+</div>
+
+<app-main-debit
+  *ngIf="transferService.sender_selected"
+  [user]="user"
+></app-main-debit>

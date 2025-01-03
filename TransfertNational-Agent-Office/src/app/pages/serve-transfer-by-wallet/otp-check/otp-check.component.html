@@ -1,0 +1,25 @@
+<div class="card">
+  <form [formGroup]="otpForm">
+    <div class="field">
+      <label>Code OTP *</label>
+      <input
+        type="text"
+        placeholder="Code OTP"
+        formControlName="otp"
+        pInputText
+      />
+      <span class="error" [ngClass]="{ set: invalidAction() }">{{
+        errorAction
+      }}</span>
+    </div>
+    <button
+      type="submit"
+      pButton
+      class="btn"
+      (click)="onSubmit()"
+      id="extourner"
+    >
+      Valider
+    </button>
+  </form>
+</div>

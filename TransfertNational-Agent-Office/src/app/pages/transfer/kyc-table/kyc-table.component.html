@@ -1,0 +1,71 @@
+<div class="container_kyc_table">
+  <div class="row">
+    <div class="col">
+      <table class="table pb-4">
+        <tbody>
+          <tr class="first_tr">
+            <td>Libellé</td>
+            <td>Description</td>
+          </tr>
+          <tr>
+            <td>Titre (M. / Mme)</td>
+            <td>{{ user?.title }}</td>
+          </tr>
+          <tr>
+            <td>Nom Complet</td>
+            <td>{{ user?.lastName }} {{ user?.firstName }}</td>
+          </tr>
+          <tr>
+            <td>Type de pièce d'identité</td>
+            <td>{{ user?.type_idcard }}</td>
+          </tr>
+          <tr>
+            <td>Pays d’émission</td>
+            <td>{{ user?.country }}</td>
+          </tr>
+          <tr>
+            <td>N° pièce d'identité</td>
+            <td>{{ user?.idCard }}</td>
+          </tr>
+          <tr>
+            <td>Validité pièce d’identité</td>
+            <td>{{ user?.validity_of_IDCard }}</td>
+          </tr>
+          <tr>
+            <td>Date de naissance</td>
+            <td>{{ user?.birthday }}</td>
+          </tr>
+          <tr>
+            <td>Pays de nationalité</td>
+            <td>{{ user?.country }}</td>
+          </tr>
+          <tr>
+            <td>Pays d'adresse</td>
+            <td>{{ user?.address }}</td>
+          </tr>
+          <tr>
+            <td>Adresse légale</td>
+            <td>{{ user?.country }}, {{ user?.address }}</td>
+          </tr>
+          <tr>
+            <td>Ville</td>
+            <td>{{ user?.city }}</td>
+          </tr>
+          <tr>
+            <td>Code Postale</td>
+            <td>{{ user?.zipCode }}</td>
+          </tr>
+          <tr>
+            <td>GSM</td>
+            <td>{{ user?.phoneNumber }}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{ user?.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div></div>
+    </div>
+  </div>
+</div>

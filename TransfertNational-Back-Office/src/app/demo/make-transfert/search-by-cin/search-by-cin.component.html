@@ -1,0 +1,24 @@
+<form [formGroup]="search_cin" (ngSubmit)="onSubmit()" *ngIf="!show_user_infos">
+  <div class="form-group" [ngClass]="{ 'has-error': invalidcin() }">
+    <input
+      type="text"
+      formControlName="cin"
+      [ngClass]="{ 'is-invalid': invalidcin() }"
+      name="cin"
+      id="cin"
+      class="form-control"
+      autocomplete="off"
+      placeholder="CIN"
+    />
+    <p class="error" [ngClass]="{ set: invalidcin() }">{{ "CIN requis" }}</p>
+  </div>
+  <div class="form-group" style="display: flex; justify-content: flex-end">
+    <input type="submit" value="Chercher" id="ajouter" />
+  </div>
+</form>
+
+<app-kyc-table
+  *ngIf="show_user_infos"
+  [user]="user"
+  (show_user_infos)="set_show_user_infos($event)"
+></app-kyc-table>

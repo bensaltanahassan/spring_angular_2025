@@ -1,0 +1,13 @@
+.libelle{
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color:rgb(209, 209, 209) !important;
+}
+
+.container_kyc_table{
+    width: 70vw;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 7px;
+    align-items: flex-end;
+}

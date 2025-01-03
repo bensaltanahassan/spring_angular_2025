@@ -1,0 +1,118 @@
+<p-toast></p-toast>
+<div class="container_kyc_table">
+  
+  <div class="row">
+    <div class="col">
+      <div>Les informations du donneur d’ordre</div>
+      <table class="table pb-4">
+        <tbody>
+          <tr>
+            <td class="libelle">Nom complet</td>
+            <td class="pos">
+              {{ multitransfer?.sender_fname }}
+              {{ multitransfer?.sender_lname }}
+            </td>
+          </tr>
+          <tr>
+            <td class="libelle">Date d'émission</td>
+            <td class="pos"></td>
+          </tr>
+          <tr>
+            <td class="libelle">Numéro de téléphone</td>
+            <td>****************</td>
+          </tr>
+          <tr>
+            <td class="libelle">Motif</td>
+            <td class="pos">{{ multitransfer?.motif }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div>Les informations de l’opération du transfert</div>
+      <table
+        class="table pb-4"
+        *ngFor="let transfer of multitransfer.transfers; let index = index"
+      >
+        <div style="font-weight: bold">
+          Transfer
+          {{ index + 1 }}
+        </div>
+        <tbody>
+          <tr>
+            <td class="libelle">Montant du transfert</td>
+            <td>{{ transfer.transfer_amount }} MAD</td>
+          </tr>
+          <tr>
+            <td class="libelle">Frais du transfert</td>
+            <td>{{ multitransfer?.total_expense_amount }} MAD</td>
+          </tr>
+          <tr>
+            <td class="libelle">Nom complet</td>
+            <td>
+              {{ transfer.receiver_fname }}
+              {{ transfer.receiver_lname }}
+            </td>
+          </tr>
+          <tr>
+            <td class="libelle">Status</td>
+            <td style="display: flex; align-items: center">
+              <span [ngClass]="status[transfer.transfer_status! - 1]">{{
+                status[transfer.transfer_status! - 1]
+              }}</span>
+              <button
+                data-toggle="modal"
+                data-target="#changeStat"
+                type="button"
+                style="width: fit-content; margin: 0 10px"
+                class="modifierButton"
+                (click)="onSubmit(transfer.transfer_status)"
+              >
+                Modifier
+              </button>
+            </td>
+          </tr>
+          <tr
+            *ngIf="
+              transfer.transfer_status == 3 ||
+              transfer.transfer_status == 4 ||
+              transfer.transfer_status == 5
+            "
+          >
+            <td class="libelle">Motif d'annulation</td>
+            <td>{{ transfer.motif }}</td>
+          </tr>
+          <tr *ngIf="transfer.transfer_status == 2">
+            <td class="libelle">Date d'acquisation</td>
+            <td>
+              {{ transfer.received_at | date: "dd/MM/yyyy" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal"
+  id="changeStat"
+  *ngIf="statusSelected != 0"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="changeStatLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <h5>Modifier l'état du transfert</h5>
+        </div>
+      </div>
+      <div class="model-body" style="padding: 0 !important">
+        <app-change-stat [stat]="statusSelected"></app-change-stat>
+      </div>
+    </div>
+  </div>
+</div>

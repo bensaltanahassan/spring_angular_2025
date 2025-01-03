@@ -1,0 +1,15 @@
+#container_Transfert_type{
+    width: clamp(500px, 60%, 800px);
+}
+
+input, select, button{
+    outline: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+}
+
+@media all and ( max-width: 768px ) {
+    #container_Transfert_type{
+        width: 80%;
+    }
+}

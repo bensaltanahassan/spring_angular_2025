@@ -1,0 +1,184 @@
+<div class="card">
+  <form class="mt-3" novalidate [formGroup]="kycForm">
+    <p
+      *ngIf="errorAction != ''"
+      class="error"
+      [ngClass]="{ set: invalidAction() }"
+    >
+      {{ errorAction }}
+    </p>
+    <div class="p-fluid p-formgrid grid">
+      <div class="field col-12 md:col-12">
+        <label *ngFor="let title of titles" for="{{ title?.name }}">
+          {{ title?.name }}
+          <input
+            type="radio"
+            ng-model="my.favorite"
+            value="{{ title?.name }}"
+            id="{{ title?.name }}"
+            formControlName="title"
+            name="title"
+          />
+        </label>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label>Nom *</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nom"
+          aria-label="Nom"
+          pInputText
+          formControlName="firstName"
+        />
+      </div>
+      <div class="field col-6">
+        <label>Prénom *</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Prénom"
+          aria-label="Prénom"
+          formControlName="lastName"
+          pInputText
+        />
+      </div>
+      <div class="field col-12 md:col-3">
+        <label>Date de naissance *</label>
+        <input
+          type="date"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': invalidbirthday() }"
+          placeholder="Date de naissance"
+          id="birthday"
+          formControlName="birthday"
+          autocomplete="off"
+          pInputText
+        />
+        <p class="errorS" [ngClass]="{ set: invalidbirthday() }">
+          {{ errorbirthday }}
+        </p>
+      </div>
+      <div class="field col-12 md:col-3">
+        <label>Téléphone *</label>
+        <input
+          type="tel"
+          class="form-control"
+          placeholder="Téléphone"
+          formControlName="phoneNumber"
+          autocomplete="off"
+          pInputText
+        />
+      </div>
+      <div class="field col-12 md:col-6">
+        <label>Email *</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': invalidEmail() }"
+          autocomplete="off"
+          pInputText
+        />
+        <p class="errorS" [ngClass]="{ set: invalidEmail() }">
+          {{ errorEmail }}
+        </p>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label>Pièce d'identité *</label>
+        <p-dropdown
+          formControlName="type_idcard"
+          (onChange)="set_id_type($event)"
+          [options]="type_idcards"
+          optionLabel="name"
+          optionValue="name"
+          [showClear]="true"
+          placeholder="Sélectionner Type de pièce d'identité"
+        ></p-dropdown>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label>Identité *</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="identité"
+          formControlName="idcard"
+          [readonly]="!set_type_idcard"
+          autocomplete="off"
+          pInputText
+        />
+      </div>
+      <div class="field col-12 md:col-3">
+        <label>Pays *</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputcity"
+          formControlName="country"
+          value="Maroc"
+          readonly
+          pInputText
+        />
+      </div>
+      <div class="field col-12 md:col-3">
+        <label>Adresse *</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Adresse"
+          formControlName="address"
+          autocomplete="off"
+          pInputText
+        />
+      </div>
+      <div class="field col-12 md:col-3">
+        <label>Ville *</label>
+        <p-dropdown
+          formControlName="city"
+          [options]="cities"
+          optionLabel="name"
+          optionValue="name"
+          [showClear]="true"
+          placeholder="Sélectionner la ville"
+        ></p-dropdown>
+      </div>
+      <div class="field col-12 md:col-3">
+        <label>Code Postal *</label>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="code postal"
+          formControlName="zipcode"
+          autocomplete="off"
+          pInputText
+        />
+      </div>
+      <div class="field col-12 md:col-12">
+        <p-checkbox
+          [binary]="true"
+          inputId="binary"
+          [required]="true"
+          formControlName="Validity_of_IDCard"
+        ></p-checkbox>
+        <label class="form-check-label" for="Validity_of_IDCard" class="mt-1">
+          Validité pièce d’identité *
+        </label>
+        
+      </div>
+      <div class="buttons_bottom">
+        <button (click)="reset()" pButton class="btn p-button-danger">Réinitialiser</button>
+        <button (click)="submit()" pButton class="btn p-button-primary">Ajouter</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="valid_infos">
+  <app-kyc-table [user]="user"></app-kyc-table>
+
+  <div class="buttons_bottom">
+    <button (click)="set_show_user_infos(false)">Retour</button>
+    <button (click)="suivant()">Suivant</button>
+  </div>
+</div>

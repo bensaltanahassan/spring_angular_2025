@@ -1,0 +1,157 @@
+version: '3.9'
+
+services:
+  national-transfer-microservice-eureka:
+    container_name: national-transfer-microservice-eureka
+    build: ./national-transfer-microservice-eureka/
+    ports:
+      - 8761:8761
+    expose:
+      - 8761
+
+  national-transfer-microservice-sirone:
+    container_name: national-transfer-microservice-sirone
+    build: ./national-transfer-microservice-sirone/
+    environment:
+      DB_HOSTNAME: national-transfer-microservice-sirone-db
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: password
+      DB_NAME: national-transfer-siron-db
+      EUREKA_HOST: national-transfer-microservice-eureka
+      EUREKA_PORT: 8761
+    ports:
+      - 8081:8081
+    expose:
+      - 8081
+    depends_on:
+      - national-transfer-microservice-transfer-db
+      - national-transfer-microservice-wallet-db
+      - national-transfer-microservice-sirone-db
+      - national-transfer-microservice-eureka
+
+  national-transfer-microservice-notification:
+    container_name: national-transfer-microservice-notification
+    build: ./national-transfer-microservice-notification/
+    environment:
+      EMAIL_USERNAME: national.transfer.ensa@gmail.com
+      EMAIL_PASSWORD: irjwwmnijmyvwwzy
+      EUREKA_HOST: national-transfer-microservice-eureka
+      EUREKA_PORT: 8761
+    ports:
+      - 8082:8082
+    expose:
+      - 8082
+    depends_on:
+      - national-transfer-microservice-eureka
+
+  national-transfer-microservice-gateway:
+    container_name: national-transfer-microservice-gateway
+    build: ./national-transfer-microservice-gateway/
+    environment:
+      EUREKA_HOST: national-transfer-microservice-eureka
+      EUREKA_PORT: 8761
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+    depends_on:
+      - national-transfer-microservice-eureka
+
+  national-transfer-microservice-wallet:
+    container_name: national-transfer-microservice-wallet
+    build: ./national-transfer-microservice-wallet/
+    environment:
+      DB_HOSTNAME: national-transfer-microservice-wallet-db
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: password
+      DB_NAME: national-transfer-wallet-db
+      EUREKA_HOST: national-transfer-microservice-eureka
+      EUREKA_PORT: 8761
+    ports:
+      - 8083:8083
+    expose:
+      - 8083
+    depends_on:
+      - national-transfer-microservice-transfer-db
+      - national-transfer-microservice-wallet-db
+      - national-transfer-microservice-sirone-db
+      - national-transfer-microservice-eureka
+
+  national-transfer-microservice-transfer:
+    container_name: national-transfer-microservice-transfer
+    build: ./national-transfer-microservice-transfer/
+    environment:
+      DB_HOSTNAME: national-transfer-microservice-transfer-db
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: password
+      DB_NAME: national-transfer-transfer-db
+      WALLET_SERVICE_HOST: national-transfer-microservice-wallet
+      WALLET_SERVICE_PORT: 8083
+      EUREKA_HOST: national-transfer-microservice-eureka
+      EUREKA_PORT: 8761
+    ports:
+      - 8084:8084
+    expose:
+      - 8084
+    depends_on:
+      - national-transfer-microservice-transfer-db
+      - national-transfer-microservice-wallet-db
+      - national-transfer-microservice-sirone-db
+      - national-transfer-microservice-eureka
+    
+  national-transfer-microservice-sirone-db:
+    container_name: national-transfer-microservice-sirone-db
+    build: ./national-transfer-microservice-sirone/database-config/
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: national-transfer-siron-db
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - 3307:3306
+    volumes:
+      - national-transfer-microservice-sirone-volume:/var/lib/mysql
+      - ./mysql-init-files:/database-config/scripts/init.sql /docker-entrypoint-initdb.d
+    expose:
+      - 3306
+
+  national-transfer-microservice-wallet-db:
+    container_name: national-transfer-microservice-wallet-db
+    build: ./national-transfer-microservice-wallet/database-config/
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: national-transfer-wallet-db
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - 3308:3306
+    volumes:
+      - national-transfer-microservice-wallet-volume:/var/lib/mysql
+      - ./mysql-init-files:/database-config/scripts/init.sql /docker-entrypoint-initdb.d
+    expose:
+      - 3306
+
+  national-transfer-microservice-transfer-db:
+    container_name: national-transfer-microservice-transfer-db
+    build: ./national-transfer-microservice-transfer/database-config/
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: national-transfer-transfer-db
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - 3309:3306
+    volumes:
+      - national-transfer-microservice-transfer-volume:/var/lib/mysql
+      - ./mysql-init-files:/database-config/scripts/init.sql /docker-entrypoint-initdb.d
+    expose:
+      - 3306
+
+volumes:
+  mysql_data:
+  national-transfer-microservice-transfer-volume:
+  national-transfer-microservice-wallet-volume:
+  national-transfer-microservice-sirone-volume:

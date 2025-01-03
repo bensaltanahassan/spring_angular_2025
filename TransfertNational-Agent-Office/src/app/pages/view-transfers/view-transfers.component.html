@@ -1,0 +1,110 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <p-table
+        #dt
+        rowGroupMode="rowspan"
+        [columns]="cols"
+        responsiveLayout="scroll"
+        [rows]="10"
+        [globalFilterFields]="['sender_fname', 'sender_lname', 'motif']"
+        [paginator]="true"
+        [rowsPerPageOptions]="[10, 20, 30]"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowHover]="true"
+        dataKey="id"
+        [value]="multitransfers"
+      >
+        <ng-template pTemplate="caption">
+          <div
+            class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+          >
+            <h5 class="m-0">Liste Transfert</h5>
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="onGlobalFilter(dt, $event)"
+                placeholder="{{ 'Search...' }}"
+                class="w-full sm:w-auto"
+              />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th [pSortableColumn]="col.field" *ngFor="let col of columns">
+              {{ col.header }}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-transfert>
+          <tr>
+            <td>
+              {{ transfert?.created_at | date : "dd/MM/yyyy" }}
+            </td>
+            <td>{{ transfert?.sender_fname }} {{ transfert?.sender_lname }}</td>
+            <td>
+              {{ transfert?.motif }}
+            </td>
+            <td>
+              <div
+                *ngFor="let multi of transfert?.transfers; let islast = last"
+              >
+                {{ multi?.receiver_fname }}
+                {{ multi?.receiver_lname }}
+
+                <hr *ngIf="!islast" />
+              </div>
+            </td>
+            <td>
+              <div
+                *ngFor="let multi of transfert?.transfers; let islast = last"
+              >
+                {{ multi?.transfer_amount }} MAD
+                <hr *ngIf="!islast" />
+              </div>
+            </td>
+            <td>
+              <div
+                *ngFor="let multi of transfert?.transfers; let islast = last"
+              >
+                {{ multi?.transfer_reference }}
+
+                <hr *ngIf="!islast" />
+              </div>
+            </td>
+            <td class="pos" *ngIf="transfert?.notify_transfer == false">
+              Désactiver
+            </td>
+            <td class="pos" *ngIf="transfert?.notify_transfer == true">
+              Active
+            </td>
+            <td>
+              <div
+                *ngFor="let multi of transfert?.transfers; let islast = last"
+              >
+                <p-tag
+                  severity="{{ giveStatusType(multi?.transfer_status).ico }}"
+                >
+                  {{ status[multi?.transfer_status! - 1] }}
+                </p-tag>
+                <hr *ngIf="!islast" />
+              </div>
+            </td>
+            <!-- <td>
+              <button pButton class="p-button-success" routerLink="/">
+                (click)="Pass(transfert?.idCard)"
+                Plus d'infos
+              </button>
+            </td> -->
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,189 @@
+<div class="card p-fluid" id="add_container">
+  <form [formGroup]="beneficiary" (ngSubmit)="onSubmit()" id="beneficiary">
+    <div *ngIf="!request_by_prospect_client">
+      <p style="margin-bottom: 0.2rem">Sélectionner parmi les bénéficiaires</p>
+      <p-dropdown
+        [options]="beneficiaires"
+        optionLabel="firstName"
+        optionValue="lastname"
+        [showClear]="true"
+        placeholder="Bénéficiaire"
+      ></p-dropdown>
+      <!-- <select class="form-select" id="older_beneficiary">
+        <option [ngValue]="null" disabled selected>Bénéficiaire</option>
+        <option *ngFor="let beneficiaire of beneficiaires">
+          {{ beneficiaire.firstName + " " + beneficiaire.lastName }}
+        </option>
+      </select> -->
+    </div>
+    <div *ngIf="!request_by_prospect_client" id="or">
+      <p>OU</p>
+    </div>
+    <div class="field grid">
+      <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">Nom</label>
+      <div class="col-12 md:col-10">
+        <input
+          type="text"
+          formControlName="last_name"
+          name="last_name"
+          id="nom"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': invalidNom() }"
+          autocomplete="off"
+          placeholder="Nom"
+          pInputText
+        />
+      </div>
+    </div>
+    <div class="field grid">
+      <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0"
+        >Prenom</label
+      >
+      <div class="col-12 md:col-10">
+        <input
+          type="text"
+          formControlName="first_name"
+          name="first_name"
+          id="prenom"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': invalidPrenom() }"
+          autocomplete="off"
+          placeholder="Prénom"
+          pInputText
+        />
+      </div>
+    </div>
+    <div class="field grid">
+      <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0"
+        >Numéro de téléphone</label
+      >
+      <div class="col-12 md:col-10">
+        <input
+          type="text"
+          formControlName="phone_number"
+          name="phone_number"
+          id="numtel"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': invalidNumTel() }"
+          autocomplete="off"
+          placeholder="Numéro de téléphone"
+          pInputText
+        />
+      </div>
+    </div>
+    <div class="field grid">
+      <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0"
+        >Montant</label
+      >
+      <div class="col-12 md:col-10">
+        <input
+          type="number"
+          formControlName="amount"
+          name="amount"
+          id="amount"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': invalidAmount() }"
+          autocomplete="off"
+          placeholder="Montant (DH)"
+          pInputText
+        />
+      </div>
+    </div>
+    <div class="row">
+      <button
+        class="btn p-button-danger mt-2"
+        type="reset"
+        pButton
+        id="annuler"
+      >
+        Réinitialiser
+      </button>
+      <button class="btn" type="submit" pButton id="ajouter">Ajouter</button>
+    </div>
+  </form>
+
+  <div id="error_holder" *ngIf="error != ''">
+    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    <p>
+      {{ error }}
+    </p>
+  </div>
+</div>
+
+<!-- <div id="add_container">
+  <form [formGroup]="beneficiary" (ngSubmit)="onSubmit()" id="beneficiary">
+    <div *ngIf="!request_by_prospect_client">
+      <p style="margin-bottom: 0.2rem">Sélectionner parmi les bénéficiaires</p>
+      <select class="form-select" id="older_beneficiary">
+        <option [ngValue]="null" disabled selected>Bénéficiaire</option>
+        <option *ngFor="let beneficiaire of beneficiaires">
+          {{ beneficiaire.firstName + " " + beneficiaire.lastName }}
+        </option>
+      </select>
+    </div>
+    <div *ngIf="!request_by_prospect_client" id="or">
+      <p>OU</p>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': invalidNom() }">
+      <input
+        type="text"
+        formControlName="last_name"
+        name="last_name"
+        id="nom"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': invalidNom() }"
+        autocomplete="off"
+        placeholder="Nom"
+      />
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': invalidPrenom() }">
+      <input
+        type="text"
+        formControlName="first_name"
+        name="first_name"
+        id="prenom"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': invalidPrenom() }"
+        autocomplete="off"
+        placeholder="Prénom"
+      />
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': invalidNumTel() }">
+      <input
+        type="text"
+        formControlName="phone_number"
+        name="phone_number"
+        id="numtel"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': invalidNumTel() }"
+        autocomplete="off"
+        placeholder="Numéro de téléphone"
+      />
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': invalidAmount() }">
+      <input
+        type="number"
+        formControlName="amount"
+        name="amount"
+        id="amount"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': invalidAmount() }"
+        autocomplete="off"
+        placeholder="Montant (DH)"
+      />
+    </div>
+    <div
+      class="form-group"
+      style="display: flex; justify-content: flex-end; margin-top: 15px"
+    >
+      <input type="reset" value="Réinitialiser" id="annuler" />
+      <input type="submit" value="Ajouter" id="ajouter" />
+    </div>
+    <div id="error_holder" *ngIf="error != ''">
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+      <p>
+        {{ error }}
+      </p>
+    </div>
+  </form>
+</div> -->

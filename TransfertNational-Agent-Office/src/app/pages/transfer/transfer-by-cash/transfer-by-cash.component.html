@@ -1,0 +1,22 @@
+<div style="margin: 0 auto">
+  <h3>Transfert en espèce</h3>
+
+  <div *ngIf="!transferService.sender_selected">
+    <div
+      class="first_transfer_container"
+      *ngIf="!set_client_info && !search_client"
+    >
+      <button (click)="search_by_CIN()" pButton class="mr-2">Recherche par pièce d'identité</button>
+      <button (click)="set_client_infos()" pButton class="btn p-button-warning">Saisir les données du donneur</button>
+    </div>
+
+    <app-search-by-cin
+      *ngIf="!set_client_info && search_client"
+    ></app-search-by-cin>
+    <app-set-sender-kyc-infos
+      *ngIf="set_client_info && !search_client"
+    ></app-set-sender-kyc-infos>
+  </div>
+
+  <app-main *ngIf="transferService.sender_selected"></app-main>
+</div>

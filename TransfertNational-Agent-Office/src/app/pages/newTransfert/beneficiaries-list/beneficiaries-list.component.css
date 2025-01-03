@@ -1,0 +1,82 @@
+.accordian{
+    margin-bottom: 25px;
+}
+.accordian-button{
+    all: unset;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.formGroup{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+    border-bottom: solid 0.002rem #ddd;
+}
+
+.form-group:nth-child(1){
+    padding-top: 1rem;
+    margin-top: .2rem;
+}
+
+.formGroup.header > div:not(:last-child) {
+    flex: 1 1 100%;
+}
+
+.formGroup.header > div:last-child{
+    min-width: 25px;
+}
+
+.formGroup.header > .formPart{
+    font-size: 12pt;
+    color: gray;
+}
+
+
+.formGroup input[type='text']{
+    font-size: 1rem;
+    font-weight:lighter;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent;
+    color: black;
+    border-color: transparent;
+    text-align: left;
+    padding: 0;
+}
+
+.formGroup .formPart{
+    text-align: left;
+}
+
+.fa.fa-minus-circle{
+    width: 16px;
+    height: 16px;
+    display: flex;
+    color: #999;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#add_button{
+    text-align: center;
+    font-size: 1rem;
+    color: var(--first-color);
+    cursor: pointer;
+}
+
+#add_button:hover{
+    text-decoration: underline;
+}
+
+#add_button button{
+    all: unset;
+}

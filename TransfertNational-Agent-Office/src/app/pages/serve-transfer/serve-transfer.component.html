@@ -1,0 +1,85 @@
+<div class="grid">
+  <div class="col-6">
+    <div>
+      <h3>les informations du bénéficiaire</h3>
+    </div>
+    <div class="card px-6 py-6">
+      <label>Reference de Transfert</label>
+      <div class="field">
+        <input
+          placeholder="Reference"
+          name="reference"
+          [(ngModel)]="reference"
+          [ngClass]="{ 'is-invalid': invalidReference() }"
+          autocomplete="off"
+          pInputText
+        />
+        <p class="errorS" [ngClass]="{ set: invalidReference() }">
+          {{ errorReference }}
+        </p>
+      </div>
+      <button
+        type="submit"
+        pButton
+        class="btn p-button-primary"
+        (click)="chercher()"
+        id="cherche-ref"
+      >
+        Chercher
+      </button>
+    </div>
+
+    <div class="container account">
+      <div class="row">
+        <app-transfer-infos
+          *ngIf="multitransfer"
+          [multitransfer]="multitransfer"
+        ></app-transfer-infos>
+        <div *ngIf="blqstatus() && !recipient_infos" class="buttons_bottom">
+          <button
+            pButton
+            class="btn p-button-primary"
+            (click)="setBenifice_infos()"
+          >
+            Bénéficiaire
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="infos_benifice">
+      <div style="margin-bottom: 30px; margin-top: 10px">
+        <app-recipient-search
+          (show_user_infos)="getBenifice_infos($event)"
+          (pin_code)="pin_code_exist($event)"
+          [reference]="reference"
+        ></app-recipient-search>
+      </div>
+    </div>
+
+    <div *ngIf="pin_code">
+      <div>
+        <app-pincode-check [reference]="reference"></app-pincode-check>
+      </div>
+    </div>
+
+    <div *ngIf="recipient_infos" class="buttons_bottom">
+      <button
+        pButton
+        class="btn p-button-primary"
+        *ngIf="!pin_code_ex"
+        (click)="serve_transfer()"
+      >
+        Valider
+      </button>
+      <button
+        pButton
+        class="btn p-button-primary"
+        *ngIf="pin_code_ex"
+        (onclick)="changePinCodeStatus()"
+      >
+        Valider
+      </button>
+    </div>
+  </div>
+</div>

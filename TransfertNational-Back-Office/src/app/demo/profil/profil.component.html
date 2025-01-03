@@ -1,0 +1,67 @@
+<p-toast></p-toast>
+<div class="grid" *ngIf="agent">
+  <div class="col-6">
+    <div class="card profile-card px-6 py-6">
+      <h6>Détails Personnel</h6>
+      <div class="image">
+        <img
+          src="assets/demo/images/avatar/ivanmagalhaes.png"
+          alt=""
+          class="profile-pic"
+        />
+      </div>
+      <h2>{{ agent.firstName }} {{ agent.lastName }}</h2>
+      <h4>Adresse</h4>
+      <span>{{ agent.country + ", " + agent.city + " " + agent.address }}</span>
+      <h4>Email</h4>
+      <span>{{ agent.email }}</span>
+      <h4>Téléphone</h4>
+      <span>{{ agent.phoneNumber }}</span>
+
+      <div *ngIf="!editPwordInd" class="mb-3" class="buttons">
+        <button type="button" class="btn" pButton (click)="editPword()">
+          Modifier le mot de passe
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card px-6 py-6" *ngIf="editPwordInd">
+      <h6>Modifier Mot de Passe</h6>
+      <label class="block">Ancien Mot de Passe</label>
+      <input
+        pInputText
+        type="password"
+        placeholder="Ancien Password"
+        [(ngModel)]="ancienPword"
+      />
+      <p style="color: red">{{ this.errors.currentpwd }}</p>
+      <label class="block">Nouveau MDP</label>
+      <p-password
+        placeholder="Nouveau Password"
+        [(ngModel)]="NouveauPword"
+        [toggleMask]="true"
+      ></p-password>
+      <p style="color: red">{{ this.errors.nouveaupwd }}</p>
+      <label class="block">Confirmer MDP</label>
+      <p-password
+        placeholder="Confirmer Password"
+        [(ngModel)]="ConfirmPword"
+        [toggleMask]="true"
+      ></p-password>
+      <p style="color: red">{{ this.errors.confirmpwd }}</p>
+      <div class="buttons">
+        <button
+          pButton
+          (click)="updatePword()"
+          class="btn p-button-success m-1"
+        >
+          Valider
+        </button>
+        <button pButton (click)="annuler()" class="btn p-button-danger m-1">
+          Annuler
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

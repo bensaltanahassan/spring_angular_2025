@@ -1,0 +1,67 @@
+#add_container{
+    margin: 20px auto;
+    width: 55vw;
+    margin-top: 2.5rem;
+    margin-bottom: 40px;
+}
+
+#add_container label{
+    margin-bottom: 0;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group input[type="checkbox"]{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#add_beneficiaries #total{
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: space-between;
+    margin-top: 25px;
+}
+
+#add_beneficiaries #total > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#add_beneficiaries #total > div:last-child{
+    border-top: solid 1px #bbb;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+
+#add_beneficiaries #total input{
+    background-color: transparent;
+    text-align: right;
+    border: none;
+    pointer-events: none;
+    padding: 0 !important;
+}
+
+
+
+
+#error_holder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#error_holder p{
+    margin-bottom: 0;
+    margin-left: 5px;
+    color: #dc3545;
+}
+
+#error_holder i{
+    width: 16px;
+    height: 16px;
+    color: #dc3545;
+}

@@ -1,0 +1,175 @@
+<!-- <div class="adjust-all" *ngIf="agent">
+  <div class="conteneur">
+    <div class="solde">
+      Solde Actuelle : <span>{{ agent.solde![0]?.total_amount }} MAD </span>
+    </div>
+
+    <div class="diviser">
+      <div class="heee">
+        <div style="width: 50%">
+          <p class="title">Détails Personnel</p>
+        </div>
+      </div>
+      <div class="hello">
+        <div class="better left-details">
+          <p>Nom complet</p>
+          <p>Adresse</p>
+        </div>
+        <div class="better">
+          <p>{{ agent.firstName }} {{ agent.lastName }}</p>
+          <p>
+            {{ agent.country + ", " + agent.city + " " + agent.address }}<br />
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="diviser">
+      <div class="heee">
+        <div style="width: 50%">
+          <p class="title">Adresse Email</p>
+        </div>
+      </div>
+      <div class="hello">
+        <div class="better left-details">
+          <p>Email (Principale)</p>
+        </div>
+        <div class="better">
+          <p>{{ agent.email }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="diviser">
+      <div class="heee">
+        <div style="width: 50%">
+          <p class="title">Numéro Télephone</p>
+        </div>
+      </div>
+      <div class="hello">
+        <div class="better left-details">
+          <p>Télephone (Principale)</p>
+        </div>
+        <div class="better">
+          <p>{{ agent.phoneNumber}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="diviser">
+      <div class="heee">
+        <div style="width: 50%">
+          <p class="title">Mot de passe</p>
+        </div>
+        <div style="width: 50%; text-align: right">
+          <button
+            class="btn mb-2 mb-md-0 btn-outline-primary"
+            (click)="editPword()"
+            style="margin-top: 0.9rem; padding: 0.3rem 0.7rem"
+          >
+            edit
+          </button>
+        </div>
+      </div>
+      <div class="hello">
+        <div class="better left-details">
+          <p>Password</p>
+          <p *ngIf="editPwordInd">Ancien Mot de Passe</p>
+
+          <p *ngIf="editPwordInd">Nouveau MDP</p>
+          <p *ngIf="editPwordInd">Confirmer MDP</p>
+        </div>
+        <div class="better">
+          <p class="pass">*********</p>
+          <div *ngIf="editPwordInd">
+            <input type="text" [(ngModel)]="ancienPword" />
+            <label class="is-invalid">{{ this.errors.currentpwd }}</label>
+            <br />
+            <input type="text" [(ngModel)]="NouveauPword" />
+            <label class="is-invalid">{{ this.errors.nouveaupwd }}</label>
+            <br />
+            <input type="text" [(ngModel)]="ConfirmPword" />
+            <label class="is-invalid">{{ this.errors.confirmpwd }}</label
+            ><br />
+            <button
+              style="margin-top: 10px"
+              (click)="updatePword()"
+              class="btn mb-2 mb-md-0 btn-outline-primary"
+            >
+              Valider
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="grid" *ngIf="agent">
+  <div class="col-6">
+    <div class="card px-6 py-6">
+      <h1 class="mb-4">Détails Personnel</h1>
+      <div class="text-center">
+        <img
+          src="../../../assets/layout/images/themes/arya-purple.png"
+          alt="Profile Image"
+          class="img-fluid rounded-circle"
+          style="
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: #009dff;
+            padding: 2px;
+            background-color: #009dff;
+          "
+        />
+      </div>
+      <div class="mb-3">
+        <b>Nom complet</b>
+        <p>{{ agent.firstName }} {{ agent.lastName }}</p>
+      </div>
+
+      <div class="mb-3">
+        <b>Adresse</b>
+        <p>{{ agent.country + ", " + agent.city + " " + agent.address }}</p>
+      </div>
+
+      <div class="mb-3">
+        <b>Adresse Email (Principale)</b>
+        <p>{{ agent.email }}</p>
+      </div>
+
+      <div class="mb-3">
+        <b>Téléphone (Principale)</b>
+        <p>0666666666666</p>
+      </div>
+
+      <div *ngIf="!editPwordInd" class="mb-3">
+        <button type="button" pButton (click)="editPword()">
+          Modifier le mot de passe
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card px-6 py-6" *ngIf="editPwordInd">
+      <h1 class="mb-4">Modifier Mot de Passe</h1>
+      <label class="block text-900 text-xl font-medium mb-2"
+        >Ancien Mot de Passe</label
+      >
+      <input pInputText type="text" [(ngModel)]="ancienPword" />
+      <p style="color: red">{{ this.errors.currentpwd }}</p>
+      <label class="block text-900 text-xl font-medium mb-2">Nouveau MDP</label>
+      <input pInputText type="text" [(ngModel)]="NouveauPword" />
+      <p style="color: red">{{ this.errors.nouveaupwd }}</p>
+      <label class="block text-900 text-xl font-medium mb-2"
+        >Confirmer MDP</label
+      >
+      <input pInputText type="text" [(ngModel)]="ConfirmPword" />
+      <p style="color: red">{{ this.errors.confirmpwd }}</p>
+      <button pButton (click)="updatePword()" class="p-button-success m-1">
+        Valider
+      </button>
+      <button pButton (click)="annuler()" class="p-button-danger m-1">
+        Annuler
+      </button>
+    </div>
+  </div>
+</div>

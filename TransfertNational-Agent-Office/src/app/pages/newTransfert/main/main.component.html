@@ -1,0 +1,230 @@
+<app-beneficiaries-list [id_client]="id_client"></app-beneficiaries-list>
+<div class="col-12">
+  <div class="card">
+    <form (ngSubmit)="submit()" [formGroup]="transfer">
+      <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 md:col-6">
+          <label for="creation_date">Date de création</label>
+          <input
+            type="text"
+            name="creation_date"
+            id="creation_date"
+            class="form-control"
+            autocomplete="off"
+            readonly
+            pInputText
+          />
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="motif">Motif</label>
+          <p-dropdown
+            [options]="motifs"
+            optionLabel="name"
+            optionValue="name"
+            [showClear]="true"
+            placeholder="motif"
+            formControlName="motif"
+          ></p-dropdown>
+        </div>
+        <div class="field col-6">
+          <label for="motif">Type des frais</label>
+          <p-dropdown
+            [options]="frais"
+            optionLabel="name"
+            optionValue="value"
+            [showClear]="true"
+            placeholder="Frais"
+            formControlName="frais"
+          ></p-dropdown>
+        </div>
+        <div class="field col-12 md:col-6">
+          <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+          <label for="motif" class="form-check-label mt-1"
+            >Notifier les bénéficiaires</label
+          >
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="motif" class="form-check-label"
+            >Montant du transfert</label
+          >
+          <input
+            type="text"
+            name="montTrans"
+            class="form-control"
+            value="{{ transferT.multiTransfer.total_amount }} DH"
+            placeholder="0 DH"
+            readonly
+            pInputText
+          />
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="motif" class="form-check-label">Frais (5%)</label>
+          <input
+            type="text"
+            name="frais"
+            class="form-control"
+            value="{{ transferT.multiTransfer.total_expense_amount }} DH"
+            placeholder="0 DH"
+            readonly
+            pInputText
+          />
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="motif" class="form-check-label"
+            >Frais de notification (2.5%)</label
+          >
+          <input
+            type="text"
+            name="frais"
+            class="form-control"
+            value="{{ notifyFrais() }} DH"
+            placeholder="0 DH"
+            readonly
+            pInputText
+          />
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="motif" class="form-check-label">Montant total</label>
+          <input
+            type="text"
+            name="montTot"
+            class="form-control"
+            value="{{ montantTotal() }} DH"
+            placeholder="0 DH"
+            readonly
+            pInputText
+          />
+        </div>
+        <div
+          class="form-group"
+          style="display: flex; justify-content: flex-end; margin-top: 15px"
+        >
+          <button (click)="retour()" pButton class="btn p-button-danger mr-2">Retour</button>
+          <button type="submit" pButton>Transférer</button>
+        </div>
+      </div>
+      <div id="error_holder" *ngIf="error != ''">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        <p>
+          {{ error }}
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div id="add_container">
+  <app-beneficiaries-list [id_client]="id_client"></app-beneficiaries-list>
+  <form id="add_beneficiaries" (ngSubmit)="submit()" [formGroup]="transfer">
+    <div class="form-group">
+      <label for="creation_date">Date de création</label>
+      <input
+        type="text"
+        name="creation_date"
+        id="creation_date"
+        class="form-control"
+        autocomplete="off"
+        readonly
+      />
+    </div>
+    <div class="form-group">
+      <label for="motif">Motif</label>
+      <select title="Motif" class="form-select" formControlName="motif">
+        <option *ngFor="let motif of motifs">
+          {{ motif }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="motif">Type des frais</label>
+      <select title="Frais" class="form-select" formControlName="frais">
+        <option [value]="1">Frais à la charge du client donneur d'ordre</option>
+        <option [value]="2">Frais à la charge du client bénéficiaire</option>
+        <option [value]="3">Frais partagé entre les clients</option>
+      </select>
+    </div>
+    <div class="form-group form-check">
+      <input
+        type="checkbox"
+        name="notifier"
+        id="notifier"
+        class="form-check-input"
+      />
+      <label for="motif" class="form-check-label"
+        >Notifier les bénéficiaires</label
+      >
+    </div>
+    <div id="total">
+      <div>
+        <div>Montant du transfert</div>
+        <div>
+          <input
+            type="text"
+            name="montTrans"
+            class="form-control"
+            value="{{ transferT.multiTransfer.total_amount }} DH"
+            placeholder="0 DH"
+            readonly
+          />
+        </div>
+      </div>
+      <div>
+        <div>Frais (5%)</div>
+        <div>
+          <input
+            type="text"
+            name="frais"
+            class="form-control"
+            value="{{ transferT.multiTransfer.total_expense_amount }} DH"
+            placeholder="0 DH"
+            readonly
+          />
+        </div>
+      </div>
+      <div *ngIf="transferT.multiTransfer.notify_transfer">
+        <div>Frais de notification (2.5%)</div>
+        <div>
+          <input
+            type="text"
+            name="frais"
+            class="form-control"
+            value="{{ notifyFrais() }} DH"
+            placeholder="0 DH"
+            readonly
+          />
+        </div>
+      </div>
+      <div>
+        <div>Montant total</div>
+        <div>
+          <input
+            type="text"
+            name="montTot"
+            class="form-control"
+            value="{{ montantTotal() }} DH"
+            placeholder="0 DH"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="form-group"
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+        margin-bottom: 0;
+      "
+    >
+      <button id="retour" (click)="retour()">Retour</button>
+      <button type="submit" id="transfer">Transférer</button>
+    </div>
+    <div id="error_holder" *ngIf="error != ''">
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+      <p>
+        {{ error }}
+      </p>
+    </div>
+  </form>
+</div> -->

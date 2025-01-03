@@ -1,0 +1,46 @@
+.account {
+  box-sizing: border-box;
+}
+
+input,
+select {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.searxh_zone {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  width: 50%;
+  margin-right: 20px;
+}
+
+
+.error {
+  width: 100%;
+  font-size: 1.1em;
+  color: #dc3545;
+  background: #dc35451f;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #dc3545;
+  margin-bottom: 20px;
+}
+
+.errorS {
+  visibility: hidden;
+  color: #dc3545;
+}
+
+.errorS.set {
+  visibility: visible;
+}
+
+.error.set {
+  display: block;
+}
+
+

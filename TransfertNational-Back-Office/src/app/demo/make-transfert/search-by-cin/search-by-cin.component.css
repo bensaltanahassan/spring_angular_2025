@@ -1,0 +1,53 @@
+.form-group input[type='text']{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.form-group input[type='text']::placeholder{
+    color: gray;
+}
+
+.form-group input[type='text']:focus{
+    border-color: rgb(60, 141, 165);
+}
+
+form{
+    display: flex;
+}
+.form-group{
+    width: 100%;
+    margin: 0 auto;
+    display: inline-block;
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
+.form-group:nth-child(1){
+    position: relative;
+    top: 18px;
+}
+
+.form-group input[type='submit']{
+    border: none;
+    outline: none;
+    background-color: var(--first-color);
+    color: white;
+    font-size: 1.1rem;
+    padding: .5rem 0;
+    width: clamp(100px, 24%, 200px);
+    border-radius: .3rem;
+}
+
+.error{
+    visibility: hidden;
+    width: 100%;
+    font-size: .9em;
+    font-weight: 500;
+    color: #c9515d;
+}
+
+.error.set{
+    visibility: visible;
+}

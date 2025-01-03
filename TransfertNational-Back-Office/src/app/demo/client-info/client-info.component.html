@@ -1,0 +1,144 @@
+<p-toast></p-toast>
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <div>
+        <div class="row" *ngIf="Client">
+          <div>
+            <div>
+              <h4>Les informations du client</h4>
+            </div>
+          </div>
+          <div class="row" *ngIf="Client">
+            <div class="col">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Title</td>
+                    <td>
+                      {{ Client?.title }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nom complet</td>
+                    <td>
+                      {{ Client?.firstName }}
+                      {{ Client?.lastName }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Numéro d'identité</td>
+                    <td>
+                      {{ Client?.idCard }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Date de naissance</td>
+                    <td>{{ Client?.birthday }}</td>
+                  </tr>
+                  <tr>
+                    <td>Numéro de téléphone</td>
+                    <td>
+                      {{ Client?.phoneNumber }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Adresse</td>
+                    <td>{{ Client?.address }}</td>
+                  </tr>
+                  <tr>
+                    <td>Ville</td>
+                    <td>
+                      {{ Client?.city }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Pays</td>
+                    <td>
+                      {{ Client?.country }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Solde</td>
+                    <td>
+                      {{ Client?.compte[0]?.solde }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <h4 *ngIf="bloque" style="color: #e93535;">Ce client est dans la liste noire</h4>
+              <button
+                title="Ajouter à la liste noire"
+                pButton
+                class="p-button-danger"
+                data-toggle="modal"
+                data-target="#verifierDecision"
+                *ngIf="!bloque && !ishide"
+                (click)="switchhide()"
+              >
+                Ajouter à la liste noire
+              </button>
+              <button
+                title="Supprimer à la liste noire"
+                pButton
+                data-toggle="modal"
+                data-target="#verifierDecision"
+                *ngIf="bloque && !ishide"
+                (click)="switchhide()"
+              >
+                Supprimer de la liste noire
+              </button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="ishide">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <h6 *ngIf="!bloque">
+                    Êtes-vous sûr de vouloir ajouter "{{ Client?.firstName }}
+                    {{ Client?.lastName }}" à la liste noire ?
+                  </h6>
+                  <h6 *ngIf="bloque">
+                    Êtes-vous sûr de vouloir Supprimer "{{ Client?.firstName }}
+                    {{ Client?.lastName }}" de la liste noire ?
+                  </h6>
+                </div>
+              </div>
+              <div>
+                <button
+                  pButton
+                  title="Annuler"
+                  type="button"
+                  class="p-button-success"
+                  data-toggle="modal"
+                  data-target="#verifierDecision"
+                  (click)="switchhide()"
+                >
+                  Non
+                </button>
+                <button
+                  pButton
+                  title="Ajouter à la liste noire"
+                  class="p-button-danger"
+                  [ngClass]="{
+                    'btn-success': bloque,
+                    'btn-danger': !bloque
+                  }"
+                  data-toggle="modal"
+                  data-target="#verifierDecision"
+                  (click)="bloque ? debloquer() : bloquer()"
+                >
+                  Oui
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

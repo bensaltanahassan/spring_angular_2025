@@ -1,0 +1,1 @@
+CREATE DATABASE IF NOT EXISTS `national-transfer-wallet-db`;

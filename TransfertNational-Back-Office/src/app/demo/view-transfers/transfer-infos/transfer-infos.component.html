@@ -1,0 +1,62 @@
+<div class="container_kyc_table" >
+    <div class="row">
+      <div class="col" >
+        <div>Les informations du donneur d’ordre</div>
+        <table class="table pb-4">    
+        <tbody>
+            <tr>
+                <td class="libelle">Nom complet</td>
+                <td class="pos">{{multitransfer?.sender_fname}} {{multitransfer?.sender_lname}}</td>
+            </tr>
+            <tr>
+                <td class="libelle">Date d'émission</td>
+                <td class="pos">{{multitransfer?.created_at | date:'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+                <td class="libelle">Numéro de téléphone</td>
+                <td>****************</td>
+            </tr>
+            <tr>
+                <td class="libelle">Motif</td>
+                <td class="pos">{{multitransfer?.motif}}</td>
+            </tr>
+            </tbody>
+                    
+        </table>
+      </div>
+        <div class="col" >
+            <div>Les informations de l’opération du transfert</div>
+                <table class="table pb-4">    
+                <tbody>
+                    <tr>
+                        <td class="libelle">Montant du transfert</td>
+                        <td>{{multitransfer?.transfers[0]?.transfer_amount}} MAD</td>
+                    </tr>
+                    <tr>
+                        <td class="libelle">Frais du transfert</td>
+                        <td>{{multitransfer?.total_expense_amount}} MAD</td>
+                    </tr>
+                    <tr>
+                        <td class="libelle">Nom complet</td>
+                        <td>{{multitransfer?.transfers[0]?.receiver_fname}} {{multitransfer?.transfers[0]?.receiver_lname}}</td>
+                    </tr>
+                    <tr>
+                        <td class="libelle">Status</td>
+                        <td>
+                            <span [ngClass]="status[multitransfer?.transfers[0]?.transfer_status! - 1]">{{status[multitransfer?.transfers[0]?.transfer_status! - 1]}}</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="multitransfer?.transfers[0]?.transfer_status==3 || multitransfer?.transfers[0]?.transfer_status==4 || multitransfer?.transfers[0]?.transfer_status==5">
+                        <td class="libelle">Motif d'annulation</td>
+                        <td> {{multitransfer?.transfers[0]?.motif}} </td>
+                    </tr>
+                    <tr *ngIf="multitransfer?.transfers[0]?.transfer_status==2">
+                        <td class="libelle">Date d'acquisation</td>
+                        <td> {{multitransfer?.transfers[0]?.received_at | date:'dd/MM/yyyy'}} </td>
+                    </tr>
+                </tbody>
+                            
+                </table>
+         </div>
+  </div>
+  </div>  

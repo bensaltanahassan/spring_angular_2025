@@ -1,0 +1,32 @@
+<p-toast></p-toast>
+<div class="grid">
+  <div class="col-6">
+    <div class="card">
+      <h4>Effectuer un Transfert</h4>
+      <form [formGroup]="transfer_type">
+        <div class="field grid">
+          <label class="col-12 md:col-6">Choissir le type de transfert</label>
+          <div class="col-12 md:col-6">
+            <div *ngFor="let transfer of transfers">
+              <p-radioButton
+                class="mt-1"
+                [label]="transfer.name"
+                formControlName="transfer_typeControl"
+                [value]="transfer.name"
+                (ngModelChange)="onChangeObj($event)"
+              ></p-radioButton>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="container_Transfert_type">
+  <app-transfer-by-account-debit
+    *ngIf="transfer_type_value == 'Par débit'"
+  ></app-transfer-by-account-debit>
+  <app-transfer-by-cash
+    *ngIf="transfer_type_value == 'En espèce'"
+  ></app-transfer-by-cash>
+</div>

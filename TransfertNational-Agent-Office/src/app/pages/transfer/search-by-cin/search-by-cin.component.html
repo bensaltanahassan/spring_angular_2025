@@ -1,0 +1,29 @@
+<div *ngIf="!show_user_infos">
+  <form [formGroup]="search_cin" (ngSubmit)="onSubmit()">
+    <div class="formgroup-inline">
+      <div class="field">
+        <input
+          type="text"
+          formControlName="cin"
+          [ngClass]="{ 'is-invalid': invalidcin() }"
+          name="cin"
+          id="cin"
+          autocomplete="off"
+          placeholder="CIN"
+          pInputText
+        />
+        <p class="error" [ngClass]="{ set: invalidcin() }">{{ errorCin }}</p>
+      </div>
+      <button pButton type="submit" label="Chercher"></button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="show_user_infos" class="col-8 card mb-3">
+  <app-kyc-table [user]="user"></app-kyc-table>
+
+  <div class="buttons_bottom mb-2">
+    <button (click)="set_show_user_infos(false)" pButton class="btn p-button-danger mr-2">Retour</button>
+    <button (click)="suivant()" pButton class="btn mr-2">Suivant</button>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="container_kyc_table">
+  <div class="row">
+    <div class="col">
+      <table class="table pb-4">
+        <tbody>
+          <tr class="first_tr">
+            <td class="libelle">Libellé</td>
+            <td>Description</td>
+          </tr>
+          <tr>
+            <td class="libelle">Titre (M. / Mme)</td>
+            <td>Mr .</td>
+          </tr>
+          <tr>
+            <td class="libelle">Prénom</td>
+            <td>{{ user?.firstName }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Type de pièce d'identité</td>
+            <td>{{ user?.lastName }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Pays d’émission</td>
+            <td>{{ user?.IDCard }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">N° pièce d'identité</td>
+            <td>{{ user?.phoneNumber }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Validité pièce d’identité</td>
+            <td>{{ user?.birthday }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Date de naissance</td>
+            <td>{{ user?.joiningDate }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Profession</td>
+            <td>{{ user?.email }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Pays de nationalité</td>
+            <td>{{ user?.email }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Pays d'adresse</td>
+            <td>{{ user?.email }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Adresse légale</td>
+            <td>{{ user?.email }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Ville</td>
+            <td>{{ user?.email }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">GSM</td>
+            <td>{{ user?.email }}</td>
+          </tr>
+          <tr>
+            <td class="libelle">Email</td>
+            <td>{{ user?.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div></div>
+    </div>
+    <div class="buttons_bottom">
+      <button (click)="set_user_infos(false)">Retour</button>
+      <button (click)="suivant()">Suivant</button>
+    </div>
+  </div>
+</div>

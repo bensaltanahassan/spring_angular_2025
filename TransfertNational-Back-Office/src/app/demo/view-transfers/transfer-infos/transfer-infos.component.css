@@ -1,0 +1,61 @@
+
+.container_kyc_table{
+    width: 75vw;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    align-items: flex-end;
+}
+
+
+
+.col{
+    margin: 40px 30px;
+}
+
+.col div{
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.col .libelle{
+    font-weight: 700;
+}
+
+span{
+    width: fit-content;
+    height: fit-content;
+    display: inline-block;
+    padding: .4rem .7rem;
+    border-radius: .2rem;
+    color: rgb(245, 242, 239);
+}
+
+.A_servir{
+    background-color: rgb(38, 160, 160);
+}
+
+.Servie{
+    background-color: rgb(33, 169, 94);
+}
+
+.Extourner{
+    background-color: rgb(226, 103, 37);
+}
+
+.Restituer{
+    background-color: rgb(226, 103, 37);
+}
+
+.Bloquer{
+    background-color: rgb(226, 37, 56);
+}
+
+.Debloquer{
+    background-color: rgb(147, 37, 226);
+}
+
+.Desherencer{
+    background-color: rgb(226, 182, 37);
+}

@@ -1,0 +1,32 @@
+<form>
+  <div class="row">
+    <p
+      *ngIf="errorAction != ''"
+      class="error"
+      [ngClass]="{ set: invalidAction() }"
+    >
+      {{ errorAction }}
+    </p>
+
+    <label for="motif">Motif</label>
+    <textarea
+      class="form-control"
+      name="motif"
+      placeholder="Motif *"
+      rows="8"
+      [(ngModel)]="motif"
+      [ngClass]="{ 'is-invalid': invalidAction() }"
+      autocomplete="off"
+    ></textarea>
+  </div>
+  <div class="form-group" style="display: flex; justify-content: center">
+    <input
+      type="submit"
+      value="Extourner"
+      id="extourner"
+      data-toggle="modal"
+      data-target="#extourner-modal"
+      (click)="onSubmit()"
+    />
+  </div>
+</form>

@@ -1,0 +1,204 @@
+<div class="container" *ngIf="!valid_infos">
+  <p class="error" *ngIf="videError">{{ "Remplit tous les champs !" }}</p>
+  <form class="row g-3" [formGroup]="kycForm">
+    <div class="row g-3">
+      <div class="col">
+        <label *ngFor="let title of titles" for="{{ title?.name }}">
+          {{ title?.name }}
+          <input
+            type="radio"
+            ng-model="my.favorite"
+            value="{{ title?.name }}"
+            id="{{ title?.name }}"
+            formControlName="title"
+            name="title"
+          />
+        </label>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col">
+        <span>Nom *</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nom"
+          aria-label="Nom"
+          formControlName="firstName"
+        />
+      </div>
+      <div class="col">
+        <span>Prénom *</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Prénom"
+          aria-label="Prénom"
+          formControlName="lastName"
+        />
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col">
+        <span>Date de naissance *</span>
+        <input
+          type="date"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': invalidbirthday() }"
+          placeholder="Date de naissance"
+          id="birthday"
+          formControlName="birthday"
+          autocomplete="off"
+        />
+        <p class="errorS" [ngClass]="{ set: invalidbirthday() }">
+          {{ errorbirthday }}
+        </p>
+      </div>
+      <div class="col">
+        <span>Pièce d'identité *</span>
+        <select
+          (change)="set_id_type($event)"
+          class="form-select"
+          formControlName="type_idcard"
+        >
+          <option [ngValue]="null" disabled selected>
+            Sélectionner Type de pièce d'identité
+          </option>
+          <option [ngValue]="'CIN'">CIN</option>
+        </select>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-6">
+        <span>Identité *</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="identité"
+          formControlName="idcard"
+          [readonly]="!set_type_idcard"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col">
+        <span>Téléphone *</span>
+        <input
+          type="tel"
+          class="form-control"
+          placeholder="Téléphone"
+          formControlName="phoneNumber"
+          autocomplete="off"
+        />
+      </div>
+      <div class="col">
+        <span>Email (Optionnel) </span>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': invalidEmail() }"
+          autocomplete="off"
+        />
+        <p class="errorS" [ngClass]="{ set: invalidEmail() }">
+          {{ errorEmail }}
+        </p>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col">
+        <span>Pays *</span>
+        <input
+          type="text"
+          class="form-control"
+          id="inputcity"
+          formControlName="country"
+          value="Maroc"
+          readonly
+        />
+      </div>
+      <div class="col">
+        <span>Adresse *</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Adresse"
+          formControlName="address"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col">
+        <span>Ville *</span>
+        <select formControlName="city" class="form-select">
+          <option [ngValue]="null" disabled selected>
+            Sélectionner la ville
+          </option>
+          <option [ngValue]="'Marrakech'">Marrakech</option>
+          <option [ngValue]="'Rabat'">Rabat</option>
+          <option [ngValue]="'Casablanca'">Casablanca</option>
+          <option [ngValue]="'Tanger'">Tanger</option>
+          <option [ngValue]="'Fes'">Fes</option>
+        </select>
+      </div>
+      <div class="col">
+        <span>Code Postal *</span>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="code postal"
+          formControlName="zipcode"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+    <div class="row g-3 check_cont">
+      <div class="col">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          formControlName="Validity_of_IDCard"
+          value=""
+          id="Validity_of_IDCard"
+          required
+        />
+        <label class="form-check-label" for="Validity_of_IDCard">
+          Validité pièce d’identité *
+        </label>
+      </div>
+    </div>
+    <div
+      class="col-12"
+      style="
+        display: grid;
+        grid-template-columns: 1fr;
+        place-items: flex-end;
+        margin-top: 1.5rem;
+      "
+    >
+      <div>
+        <button type="submit" class="btn btn-primary" (click)="reset()">
+          Réinitialiser
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="submit()"
+          style="margin-right: 4px"
+        >
+          Suivant
+        </button>
+        <!-- [disabled]="clientForm.invalid"-->
+      </div>
+    </div>
+  </form>
+</div>
+
+<app-kyc-table
+  *ngIf="valid_infos"
+  [user]="user"
+  (show_user_infos)="set_show_user_infos($event)"
+></app-kyc-table>

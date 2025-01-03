@@ -1,0 +1,71 @@
+<div class="grid">
+  <div class="col-6">
+    <div class="card">
+      <label>Reference de Transfert</label>
+      <div class="field">
+        <input
+          placeholder="Reference"
+          name="reference"
+          [(ngModel)]="reference"
+          [ngClass]="{ 'is-invalid': invalidReference() }"
+          autocomplete="off"
+          pInputText
+        />
+        <p class="errorS" [ngClass]="{ set: invalidReference() }">
+          {{ errorReference }}
+        </p>
+        <button
+          type="submit"
+          pButton
+          class="btn p-button-success"
+          id="chercher-ref-wt"
+          (click)="chercher()"
+        >
+          Chercher
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container account">
+    <div class="row">
+      <app-transfer-infos
+        *ngIf="multitransfer"
+        [multitransfer]="multitransfer"
+      ></app-transfer-infos>
+      <div *ngIf="blqstatus()" class="buttons_bottom">
+        <button
+          pButton
+          class="btn p-button-warning"
+          (click)="setBenifice_infos()"
+        >
+          Bénéficiaire
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6" *ngIf="infos_benifice">
+    <div>
+      <app-recipient-account-search
+        (show_user_infos)="getBenifice_infos($event)"
+      ></app-recipient-account-search>
+    </div>
+  </div>
+
+  <div *ngIf="valide && phone_number != '' && pin_code">
+    <div style="width: 80%">
+      <app-otp-check
+        [phone_number]="recipient_infos?.phoneNumber"
+        [reference]="reference"
+      ></app-otp-check>
+    </div>
+  </div>
+
+  <app-kyc-table
+    *ngIf="recipient_infos"
+    [user]="recipient_infos"
+  ></app-kyc-table>
+  <div *ngIf="recipient_infos && phone_number != ''">
+    <button pButton (click)="changeStatusPinCodeAndValide()">Valider</button>
+  </div>
+</div>

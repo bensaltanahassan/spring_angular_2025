@@ -1,0 +1,26 @@
+<div *ngIf="multitransfer">
+  <app-transfer-infos [multitransfer]="multitransfer"></app-transfer-infos>
+  <div class="buttons_bottom">
+    <button *ngIf="blqstatus()" (onclick)="afficheExtournerForm()">
+      Extourner
+    </button>
+  </div>
+</div>
+
+<div
+  style="display: flex; justify-content: center; margin-top: 20px"
+  *ngIf="!multitransfer"
+>
+  <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+</div>
+
+<div *ngIf="formExtourner">
+  <div class="modal-dialog" role="document" style="width: 80%">
+    <div class="modal-content">
+      <app-extourne-modal
+        [reference]="reference"
+        (extort_transfer)="setExtortTransfer($event)"
+      ></app-extourne-modal>
+    </div>
+  </div>
+</div>

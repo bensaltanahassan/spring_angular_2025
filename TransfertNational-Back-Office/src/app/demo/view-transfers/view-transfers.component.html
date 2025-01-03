@@ -1,0 +1,108 @@
+<p-toast></p-toast>
+<div class="container account">
+  <div class="row">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Chercher par référence"
+      aria-label="Nom"
+      [(ngModel)]="reference"
+      [ngClass]="{ 'is-invalid': invalidReference() }"
+      autocomplete="off"
+    />
+    <button
+      type="submit"
+      id="chercher-transfert"
+      class="btn btn-primary"
+      (click)="chercher()"
+      style="margin-right: 4px"
+    >
+      Chercher
+    </button>
+    <p class="errorS" [ngClass]="{ set: invalidReference() }">
+      {{ errorReference }}
+    </p>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table pb-4">
+        <thead>
+          <tr class="first_tr">
+            <td class="first_td"></td>
+            <td>Date de création</td>
+            <td>Expéditeur</td>
+            <td>Motif</td>
+            <td>Bénéficiaires</td>
+            <td>Montant total</td>
+            <td>Reference</td>
+            <td>Notification</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="test"
+            *ngFor="
+              let mult of multitransfers!
+              let i = index
+            "
+          >
+            <td></td>
+            <td class="pos">{{ mult.created_at | date: "dd/MM/yyyy" }}</td>
+            <td class="pos">{{ mult.sender_fname }} {{ mult.sender_lname }}</td>
+            <td class="pos">{{ mult.motif }}</td>
+            <td>
+              <span
+                style="
+                  color: #414141 !important;
+                  font-weight: lighter;
+                  font-weight: 700;
+                "
+                >Total </span
+              ><br />
+              <span
+                style="color: #414141 !important; font-weight: lighter"
+                *ngFor="let benifices of mult.transfers"
+              >
+                {{ benifices.receiver_fname }} {{ benifices.receiver_lname
+                }}<br />
+              </span>
+            </td>
+            <td class="pos">
+              <span
+                style="
+                  color: #414141 !important;
+                  font-weight: lighter;
+                  font-weight: 700;
+                "
+                >{{ mult.total_amount }} MAD</span
+              ><br />
+              <span
+                style="color: #414141 !important; font-weight: lighter"
+                *ngFor="let benifices of mult.transfers"
+              >
+                {{ benifices.transfer_amount }} MAD<br />
+              </span>
+            </td>
+            <td class="pos">
+              <br />
+              <span
+                style="color: #414141 !important; font-weight: lighter"
+                *ngFor="let benifices of mult.transfers"
+              >
+                {{ benifices?.transfer_reference }}<br />
+              </span>
+            </td>
+            <td class="pos" *ngIf="mult.notify_transfer == false">
+              Désactiver
+            </td>
+            <td class="pos" *ngIf="mult.notify_transfer == true">Active</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <br />
+        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,141 @@
+
+<!-- <div class="container account">
+  <div class="row" *ngIf="Clients.length !== 0">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Chercher par numéro de téléphone"
+      aria-label="Nom"
+      [(ngModel)]="recherche"
+      [ngClass]="{ 'is-invalid': invalidRecherche() }"
+      autocomplete="off"
+    />
+    <button
+      type="submit"
+      id="chercher-phNum"
+      class="btn btn-primary"
+      (click)="chercher()"
+      style="margin-right: 4px"
+    >
+      Chercher
+    </button>
+    <p class="errorS" [ngClass]="{ set: invalidRecherche() }">
+      {{ errorRecherche }}
+    </p>
+  </div>
+  <div class="row" *ngIf="Clients.length !== 0">
+    <div class="col">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nom Complet</th>
+            <th scope="col">Numéro de téléphone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Bloquée le</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="test1"
+            *ngFor="
+              let client of Clients
+                | paginate
+                  : {
+                      id: 'listing_pagination',
+                      itemsPerPage: 5,
+                      currentPage: page,
+                      totalItems: totalRecords
+                    };
+              let i = index
+            "
+          >
+            <th style="align-items: center" scope="row">
+              {{ client.firstName }} {{ client.lastName }}
+            </th>
+            <td style="align-items: center">{{ client.phoneNumber }}</td>
+            <td style="align-items: center">{{ client.email }}</td>
+            <td style="align-items: center">
+              {{ client.createdAt | date: "dd/MM/yyyy" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <br />
+        <pagination-controls
+          *ngIf="totalRecords! >= 7"
+          id="listing_pagination"
+          (pageChange)="changepage($event)"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+  <div
+    style="display: flex; justify-content: center; margin-top: 20px"
+    *ngIf="Clients.length === 0"
+  >
+    <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+  </div>
+</div> -->
+
+
+<p-toast></p-toast>
+ <div class="grid">
+  <div class="col-12">
+      <div class="card px-6 py-6">
+          <p-table
+              #dt
+              [columns]="cols"
+              [value]="Clients"
+              responsiveLayout="scroll"
+              [rows]="10"
+              [globalFilterFields]="['name']"
+              [paginator]="true"
+              [rowsPerPageOptions]="[10, 20, 30]"
+              [showCurrentPageReport]="true"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+              [rowHover]="true"
+              dataKey="id"
+          >
+              <ng-template pTemplate="caption">
+                  <div
+                      class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+                  >
+                      <h5 class="m-0">Black Liste 📛</h5>
+                      <span class="block mt-2 md:mt-0 p-input-icon-left">
+                          <i class="pi pi-search"></i>
+                          <input
+                              pInputText
+                              type="text"
+                              (input)="onGlobalFilter(dt, $event)"
+                              placeholder="{{ 'Search...' }}"
+                              class="w-full sm:w-auto"
+                          />
+                      </span>
+                  </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                  <tr>
+                      <th
+                          [pSortableColumn]="col.field"
+                          *ngFor="let col of columns"
+                      >
+                          {{ col.header }}
+                          <p-sortIcon [field]="col.field"></p-sortIcon>
+                      </th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-client>
+                  <tr>
+                      <td>{{ client?.firstName }} {{ client?.lastName }}</td>
+                      <td>{{ client?.motif }}</td>
+                      <td>{{ client?.phoneNumber }}</td>
+                      <td>{{ client?.email }}</td>
+                      <td>{{ client?.createdAt | date: "dd/MM/yyyy" }}</td>
+                  </tr>
+              </ng-template>
+          </p-table>
+      </div>   
+  </div>
+  </div>

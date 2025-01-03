@@ -1,0 +1,63 @@
+<p-toast></p-toast>
+<div *ngIf="multitransfer">
+  <app-transfer-infos [multitransfer]="multitransfer"></app-transfer-infos>
+  <div class="buttons_bottom">
+    <button
+      *ngIf="blqstatus()"
+      data-toggle="modal"
+      data-target="#bloquer-modal"
+    >
+      Bloquer
+    </button>
+    <button
+      *ngIf="blqstatus()"
+      data-toggle="modal"
+      data-target="#extourner-modal"
+    >
+      Extourner
+    </button>
+  </div>
+</div>
+
+<div
+  style="display: flex; justify-content: center; margin-top: 20px"
+  *ngIf="!multitransfer"
+>
+  <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+</div>
+
+<div
+  class="modal"
+  id="extourner-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document" style="width: 80%">
+    <div class="modal-content">
+      <app-extourne-modal
+        [reference]="reference"
+        (extort_transfer)="setExtortTransfer($event)"
+      ></app-extourne-modal>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal"
+  id="bloquer-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document" style="width: 80%">
+    <div class="modal-content">
+      <app-bloquer-modal
+        [reference]="reference"
+        (extort_transfer)="setExtortTransfer($event)"
+      ></app-bloquer-modal>
+    </div>
+  </div>
+</div>

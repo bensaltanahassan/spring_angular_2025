@@ -1,0 +1,28 @@
+<p-toast></p-toast>
+
+<div id="container_Transfert_type">
+  <form [formGroup]="transfer_type" id="select_transfer_type">
+    <div class="form-group">
+      <label for="motif">Type de transfert </label>
+      <select
+        formControlName="transfer_typeControl"
+        class="form-select"
+        (ngModelChange)="onChangeObj($event)"
+      >
+        <option [ngValue]="null" disabled selected>
+          Sélectionner le type de transfert
+        </option>
+        <option *ngFor="let transfer of transfers" [ngValue]="transfer?.name">
+          {{ transfer.name }}
+        </option>
+      </select>
+    </div>
+  </form>
+
+  <app-transfer-by-account-debit
+    *ngIf="transfer_type_value == 'Par débit'"
+  ></app-transfer-by-account-debit>
+  <app-transfer-by-cash
+    *ngIf="transfer_type_value == 'En espèce'"
+  ></app-transfer-by-cash>
+</div>

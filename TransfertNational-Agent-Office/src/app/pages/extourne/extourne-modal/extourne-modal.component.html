@@ -1,0 +1,26 @@
+<div class="card">
+  <form>
+    <label>Motif</label>
+    <div class="field">
+      <textarea
+        rows="5"
+        cols="30"
+        pInputTextarea
+        [autoResize]="true"
+        [(ngModel)]="motif"
+        [ngClass]="{ 'is-invalid': invalidAction() }"
+        autocomplete="off"
+      ></textarea>
+    </div>
+    <button type="submit" pButton id="extourner" (click)="onSubmit()">
+      Extourner
+    </button>
+    <p
+      *ngIf="errorAction != ''"
+      class="error"
+      [ngClass]="{ set: invalidAction() }"
+    >
+      {{ errorAction }}
+    </p>
+  </form>
+</div>

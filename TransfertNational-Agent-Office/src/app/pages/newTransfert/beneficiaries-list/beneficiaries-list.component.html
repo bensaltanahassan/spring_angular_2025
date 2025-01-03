@@ -1,0 +1,154 @@
+<div class="grid">
+  <div class="col-12 accordion">
+    <h4>Bénéficiaires</h4>
+    <div class="card px-6 py-6">
+      <p-table
+        #dt
+        [columns]="cols"
+        responsiveLayout="scroll"
+        [rows]="10"
+        [rowHover]="true"
+        dataKey="id"
+        [value]="mainComponent.transferT.multiTransfer.transfers"
+      >
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th [pSortableColumn]="col.field" *ngFor="let col of columns">
+              {{ col.header }}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-beneficiaire>
+          <tr>
+            <td>{{ fullName(beneficiaire) }}</td>
+            <td>{{ beneficiaire.receiver_phnumber }}</td>
+            <td>{{ beneficiaire.transfer_amount }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<app-add-beneficiary [id_client]="id_client"></app-add-beneficiary>
+
+<!-- <div class="accordian" id="accordian">
+  <div class="accordian-item">
+    <h5 class="accordian-header" id="header" style="width: 100%">
+      <button
+        class="accordian-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#beneficiares_list"
+        aria-expanded="true"
+        aria-controls="#beneficiares_list"
+      >
+        Bénéficiaires
+        <i
+          class="fa fa-chevron-down"
+          aria-hidden="true"
+          style="font-size: 1rem"
+          *ngIf="toggle"
+        ></i>
+        <i
+          class="fa fa-chevron-up"
+          aria-hidden="true"
+          style="font-size: 1rem"
+          *ngIf="!toggle"
+        ></i>
+      </button>
+    </h5>
+    <div
+      id="beneficiares_list"
+      class="accordian-collapse show"
+      aria-labelledby="header"
+      data-bs-parent="#accordian"
+    >
+      <div class="accordian-body">
+        <div
+          *ngIf="mainComponent.transferT.multiTransfer.transfers.length != 0"
+          class="formGroup header"
+        >
+          <div class="formPart">Nom Complet</div>
+          <div class="formPart">Numéro du téléphone</div>
+          <div class="formPart">Montant (DH)</div>
+          <div class="formPart"></div>
+        </div>
+        <div
+          *ngFor="
+            let beneficiaire of mainComponent.transferT.multiTransfer.transfers;
+            let i = index
+          "
+          class="formGroup"
+        >
+          <div class="formPart">
+            <input
+              type="text"
+              name="nomcomp"
+              id="nomcomp"
+              class="form-control"
+              value="{{ fullName(beneficiaire) }}"
+              readonly
+            />
+          </div>
+          <div class="formPart">
+            <input
+              type="text"
+              name="numtel"
+              id="numtel"
+              class="form-control"
+              value="{{ beneficiaire.receiver_phnumber }}"
+              readonly
+            />
+          </div>
+          <div class="formPart">
+            <input
+              type="text"
+              name="montant"
+              id="montant"
+              class="form-control"
+              value="{{ beneficiaire.transfer_amount }}"
+              readonly
+            />
+          </div>
+          <div class="formPart" style="width: 16px; height: 16px">
+            <label
+              class="beneficiaire"
+              id="{{ i }}"
+              style="width: 16px; height: 16px"
+            >
+              <span class="fa fa-minus-circle"></span>
+            </label>
+          </div>
+        </div>
+        <div id="add_button">
+          <button
+            type="button"
+            id="add_button"
+            data-toggle="modal"
+            data-target="#modalAjouterBenef"
+          >
+            Ajouter un bénéficiaire
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div
+  class="modal"
+  id="modalAjouterBenef"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document" style="min-width: 700px">
+    <div class="modal-content">
+      <app-add-beneficiary [id_client]="id_client"></app-add-beneficiary>
+    </div>
+  </div>
+</div> -->

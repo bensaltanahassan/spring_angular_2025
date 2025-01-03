@@ -1,0 +1,26 @@
+<div class="card">
+  <form [formGroup]="beneficeForm">
+    <div class="field">
+      <label>Numéro de compte *</label>
+      <input
+        type="text"
+        placeholder="Compte"
+        aria-label="compte"
+        formControlName="account"
+        pInputText
+      />
+      <span class="error" [ngClass]="{ set: invalidAction() }">{{
+        errorAction
+      }}</span>
+    </div>
+    <button
+      type="submit"
+      pButton
+      class="btn"
+      (click)="onSubmit()"
+      id="chercher-ref-wt"
+    >
+      Chercher
+    </button>
+  </form>
+</div>

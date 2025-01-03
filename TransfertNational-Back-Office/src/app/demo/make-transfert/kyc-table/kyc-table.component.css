@@ -1,0 +1,38 @@
+.libelle{
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color:rgb(73, 73, 73) !important;
+}
+
+.container_kyc_table{
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    align-items: flex-end;
+}
+
+
+.buttons_bottom{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buttons_bottom button:nth-child(1){
+    background-color: rgb(226, 37, 84);
+
+}
+
+
+.buttons_bottom button{
+    margin-top: 1.1rem;
+    border: none;
+    outline: none;
+    background-color: var(--first-color);
+    color: white;
+    font-size: 1.1rem;
+    padding: .4rem 0;
+    width: 150px;
+    border-radius: .4rem;
+
+}

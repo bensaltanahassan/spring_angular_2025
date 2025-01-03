@@ -1,0 +1,106 @@
+#add_container{
+    padding: 10px 20px;
+    min-width: 500px;
+}
+
+#or{
+    position: relative;
+    border: solid 1px #bbb;
+    margin: 25px 0;
+}
+
+#or > p{
+    width: 50px;
+    height: 25px;
+    position: absolute;
+    top: -12.5px;
+    left: calc(50% - 25px);
+    background: white;
+    margin-bottom: 0px;
+    text-align: center;
+    color: #bbb;
+    font-weight: bold;
+}
+
+textarea,
+.form-group input[type='number']{
+    outline: none !important;
+    box-shadow: none !important;
+    color: black;
+    border-radius: 5px;
+    border-width: 1px;
+    background-color: transparent;
+    margin-bottom: 15px;
+}
+
+textarea::placeholder,
+.form-group input[type='number']::placeholder{
+    color: gray;
+}
+
+textarea:focus,
+.form-group input[type='number']:focus{
+    border-color: var(--first-color);
+}
+
+/* Chrome, Safari, Edge, Opera */
+.form-group input[type='number']::-webkit-outer-spin-button,
+.form-group input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-select{
+    box-shadow: none !important;
+    margin: 0px 0px 15px 0px;
+}
+
+.form-select:focus{
+    border-color: var(--first-color);
+}
+
+.form-group{
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
+#annuler, #modifier{
+    margin: 0rem 0 0 1rem ;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+    padding: .5rem 0;
+    width: clamp(100px, 25%, 200px);
+    border-radius: .3rem;
+}
+
+#annuler{
+    background-color: #555;
+}
+#modifier{
+    background-color: var(--first-color);
+}
+
+#error_holder{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#error_holder p{
+    margin-bottom: 0;
+    margin-left: 5px;
+    color: #dc3545;
+}
+
+#error_holder i{
+    width: 16px;
+    height: 16px;
+    color: #dc3545;
+}

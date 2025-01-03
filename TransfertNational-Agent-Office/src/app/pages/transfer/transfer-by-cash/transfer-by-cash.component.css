@@ -1,0 +1,13 @@
+
+.first_transfer_container div{
+    font-size: 1.1rem;
+    color: rgb(24, 78, 78);
+    cursor: pointer;
+    margin-bottom: 2px;
+    display: inline-block;
+}
+
+.first_transfer_container div:hover{
+    color: rgb(34, 172, 172);
+    
+}

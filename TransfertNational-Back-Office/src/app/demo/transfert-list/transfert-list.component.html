@@ -1,0 +1,104 @@
+<p-toast></p-toast>
+<div class="grid">
+  <div class="col-12">
+      <div class="card px-6 py-6">
+      <p-table
+      #dt
+     [columns]="cols"
+      [value]="multitransfers"
+      responsiveLayout="scroll"
+      [rows]="10"
+      [globalFilterFields]="['name']"
+      [paginator]="true"
+      [rowsPerPageOptions]="[10, 20, 30]"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowHover]="true"
+      dataKey="id"
+  >
+  <ng-template pTemplate="caption">
+    <div
+        class="flex flex-column md:flex-row md:justify-content-between"
+    >
+        <h5 class="m-0">Liste des transfers</h5>
+        <span class="block mt-2 md:mt-0 p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+                pInputText
+                type="text"
+                (input)="onGlobalFilter(dt, $event)"
+                placeholder="{{ 'Search...' }}"
+                class="w-full sm:w-auto"
+            />
+        </span>
+    </div>
+</ng-template>
+<ng-template pTemplate="header" let-columns >
+    <tr>
+        <th
+            [pSortableColumn]="col.field"
+            *ngFor="let col of columns"
+        >
+            {{ col.header }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+    </tr>
+</ng-template>
+<ng-template pTemplate="body" let-mult style="vertical-align: top"
+>
+  <tr>
+            <td>{{ mult.created_at | date: "dd/MM/yyyy" }}</td>
+            <td>{{ mult.sender_fname }} {{ mult.sender_lname }}</td>
+            <td>{{ mult.motif }}</td>
+            <td>
+              <p
+                style="font-weight: lighter"
+                *ngFor="let benifices of mult.transfers"
+              >
+                - {{ benifices.receiver_fname }} {{ benifices.receiver_lname
+                }}
+              </p>
+              <p></p>
+            </td>
+            <td>
+              <p
+                style="font-weight: lighter"
+                *ngFor="let benifices of mult.transfers"
+              >
+                 {{ benifices.transfer_amount }} MAD
+              </p>
+              <p
+                style="
+                  font-weight: lighter;
+                  font-weight: 700;
+                "
+                >Total: {{ mult.total_amount }} MAD</p
+              >
+            </td>
+            <td>
+              <p
+                style="font-weight: lighter"
+                *ngFor="let benifices of mult.transfers"
+              >
+               - {{ benifices?.transfer_reference }}<br />
+              </p>
+              <p></p>
+            </td>
+            <td>
+              <p *ngFor="let benifices of mult.transfers">
+              <p-tag
+                severity="{{
+                  giveStatusType(benifices.transfer_status).ico
+              }}"
+              >
+                {{ status[benifices?.transfer_status! - 1] }}
+              </p-tag>
+            </p>
+            <p></p>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

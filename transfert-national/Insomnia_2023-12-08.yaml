@@ -1,0 +1,592 @@
+_type: export
+__export_format: 4
+__export_date: 2023-12-08T23:47:51.889Z
+__export_source: insomnia.desktop.app:v8.3.0
+resources:
+  - _id: req_d2d24e8ee36049bc8365fa9ed699fa9b
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702078908218
+    created: 1702078606382
+    url: 127.0.0.1:8084/api/transfer/clients/create
+    name: "create transfer in transfer service "
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id":222,
+        	"transferType":"",
+        	"amount":222.0,
+        	"status":"",
+        	"recipient":"",
+        	"feesType":""
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1702078606382
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_a4157f32951a4bc69cbd7697cbfe0846
+    parentId: wrk_scratchpad
+    modified: 1702076245245
+    created: 1702076245245
+    name: "Tranfert National "
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1702076245245
+    _type: request_group
+  - _id: wrk_scratchpad
+    parentId: null
+    modified: 1697552588855
+    created: 1697552588855
+    name: Scratch Pad
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_a4c12e71b65341a5b1b7950dffe7acc9
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702079099882
+    created: 1702079065757
+    url: 127.0.0.1:8081/api/siron/is-blacklisted/1
+    name: api siron is-blacklisted client
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1702078311716.125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4a31ca7571024514a6cd1cbcd6cbc84a
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702079209862
+    created: 1702079119625
+    url: 127.0.0.1:8081/api/siron/add-to-blacklist
+    name: api siron add-to-blacklist
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        "bclientId":11,
+        	"blacklistingDate":"",
+        	"cause":""
+        	
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1702078164383.1875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_68b20290c8574f44834e08e15ecad43d
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702079199502
+    created: 1702079180814
+    url: 127.0.0.1:8081/api/siron/remove-from-blacklist
+    name: api siron remove-from-blacklist
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        "bclientId":11,
+        	"blacklistingDate":"",
+        	"cause":""
+        	
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1702078090716.7188
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_94957b1d9a8645d4bfa886b9f4229523
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702078946919
+    created: 1702078925926
+    url: 127.0.0.1:8084/api/transfer/find/1
+    name: "find transfer in transfer service "
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1702078017050.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_92ff100de074473ea7883b53c605c4db
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702078996823
+    created: 1702078958588
+    url: 127.0.0.1:8084/api/transfer/find/1
+    name: "update status  transfer in transfer service "
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id":222,
+        	"transferStatus":""
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1702077722384.375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5549bfbd5a7c4627bb36f6ddd0be408c
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702078778068
+    created: 1702078618511
+    url: 127.0.0.1:8084/clients/create
+    name: "create client in transfer service "
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"clientId":2
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1702077427718.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a26192d554554fb7ac4b9106bd5d22a3
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702078765292
+    created: 1702078705154
+    url: 127.0.0.1:8084/supervisors/create
+    name: "create supervisors in transfer service "
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"supervisorId":2
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1702076838386.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_eb6e104b231740feb58616916e97b501
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702076463968
+    created: 1702076249055
+    url: 127.0.0.1:8083/api/client/create
+    name: "create client "
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id":"1",
+        	"email":"yusuf@gmail.com"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1702076249055
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_be4912721acb4c929b50bf301b4aa1fd
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702077183862
+    created: 1702077115454
+    url: 127.0.0.1:8083/api/prospect/create
+    name: "create prospect "
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id":"1",
+        	"firstName":"firstName",
+        	"LastName":"LastName",
+        	"phoneNumber":"02020202020"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701921115426.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ea18196009f54337aa04eb9552c405f6
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702077277355
+    created: 1702077259938
+    url: 127.0.0.1:8083/api/wallet/all
+    name: "all  wallet "
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701882332019.0625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cfeb53b5568a4976b205bc32b6e6daf8
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702077340026
+    created: 1702077306744
+    url: 127.0.0.1:8083/api/wallet/find/BE63 0637 7539 9762
+    name: get Wallet By Number
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701862940315.4688
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2fc0424a8ae643a3bb4fd462e277f7b3
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702077399495
+    created: 1702077355658
+    url: 127.0.0.1:8083/api/wallet/addWallet
+    name: add Wallet
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id": 2,
+        	"number": "BE63 0637 7539 9763",
+        	"balance": 0.0,
+        	"transferCeiling": 5000.0,
+        	"dailyCeiling": 4000.0,
+        	"creationDate": "2023-12-08T23:11:15"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701853244463.6719
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9c9839db4dac4bb4bfd25fc7d3158c98
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702077471645
+    created: 1702077438670
+    url: 127.0.0.1:8083/api/wallet/update/1
+    name: "update wallet "
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"sold":222222
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701848396537.7734
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4753152ae37045aba9c60f7bee5a0bed
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702078598478
+    created: 1702077521565
+    url: 127.0.0.1:8083/api/wallet/debit/1
+    name: "debit wallet "
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"amount":222222
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701845972574.8242
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b14225cb04b945829f68c15039b81423
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702077540788
+    created: 1702077527469
+    url: 127.0.0.1:8083/api/wallet/credit/1
+    name: "credit wallet "
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"amount":222222
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701844760593.3496
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_40f7070784214f0c8074fe8c1d746783
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702077229885
+    created: 1702077211342
+    url: 127.0.0.1:8083/api/prospect/find/1
+    name: "find  prospect  by id "
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701843548611.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b7b936e05351435181002a722b87aee0
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702076667185
+    created: 1702076630155
+    url: 127.0.0.1:8083/api/client/find/1/
+    name: "find client by id "
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701765981797.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6537624a62924511bff665f52332515c
+    parentId: fld_a4157f32951a4bc69cbd7697cbfe0846
+    modified: 1702076813361
+    created: 1702076687315
+    url: 127.0.0.1:8083/api/client/1/balance
+    name: get Wallet Balance By ClientId
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.3.0
+    authentication: {}
+    metaSortKey: -1701610848168.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    parentId: wrk_scratchpad
+    modified: 1697552634200
+    created: 1697552634200
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1697552634200
+    _type: environment
+  - _id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    parentId: wrk_scratchpad
+    modified: 1701458768655
+    created: 1697552634202
+    name: Default Jar
+    cookies:
+      - key: JSESSIONID
+        value: FB55F75B341D5DFDA79028860751CEF1
+        domain: localhost
+        path: /
+        httpOnly: true
+        hostOnly: true
+        creation: 2023-12-01T18:39:13.078Z
+        lastAccessed: 2023-12-01T19:26:08.654Z
+        id: "07114352217609188"
+    _type: cookie_jar
